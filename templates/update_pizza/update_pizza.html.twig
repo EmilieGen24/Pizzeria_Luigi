@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifie ta pizza{% endblock %}
+
+{% block body %}
+    {{form_start(pizzaform)}}
+        {{form_widget(pizzaform)}}
+        <button>Modifier</button>
+    {{form_end(pizzaform)}}
+
+{% endblock %}

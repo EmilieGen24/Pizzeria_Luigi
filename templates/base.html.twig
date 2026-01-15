@@ -4,14 +4,36 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
-
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
+        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     </head>
     <body>
+        <header>
+            <nav class="container">
+                <div class="logo">
+                    <img src="{{ asset('assets/img/Logo.png')}}" alt="Image du logo">
+                </div>
+                <ul>
+                    <li><a href="{{ path("accueil") }}">Accueil</a></li>
+                    <li><a href="{{ path("ajout_pizza") }}">Crée ta pizza</a></li>
+                    {# <li><a href="{{ path("contact") }}">Contact</a></li> #}
+                </ul>
+            </nav>
+        </header>
         {% block body %}{% endblock %}
+        <footer>
+            <section class="container">
+                <div class="footer-logo">
+                    <img src="{{ asset('assets/img/Logo.png')}}" alt="Image du logo">
+                </div>
+                <div class="footer-content">
+                    <p>contact@pizza-luigi.fr</p>
+                    <p>01 23 45 67 89</p>
+                    {# <a href="{{ path("contact") }}">Formulaire de contact</a> #}
+                    <div class="copy">
+                        <p>c 2023 Pizza Luigi. Tous droits réservés.</p>
+                    </div>
+                </div>
+            </section>
+        </footer>
     </body>
 </html>

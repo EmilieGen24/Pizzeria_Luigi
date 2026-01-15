@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pizzeria{% endblock %}
+
+
+
+{% block body %}
+
+    {% for pizza in pizzeria %}
+        <h1>{{pizza.nom}}</h1>
+        {# <p>{{pizza.ingredientSpecial}}</p> #}
+        <a href={{ path("update_pizza", {'id' : pizza.id})}}>Modifier</a>
+        <form action="{{ path("delete_pizza", {'id' : pizza.id}) }}" method="POST" onsubmit="return confirm ('Confirmer la suppression?')">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ pizza.id)}}">
+        <input id="delete" type="submit" value="Supprimer">
+         {# {{ dump(pizza) }} #}
+    </form>
+    {% endfor %}
+
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success"> 
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}
