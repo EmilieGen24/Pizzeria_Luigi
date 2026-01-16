@@ -32,6 +32,9 @@ class Pizza
     #[ORM\ManyToOne(inversedBy: 'pates')]
     private ?Pates $pates = null;
 
+    #[ORM\ManyToOne(inversedBy: 'pizzas')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->ingredientClassiques = new ArrayCollection();
@@ -101,6 +104,18 @@ class Pizza
     public function setPates(?Pates $pates): static
     {
         $this->pates = $pates;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -5,6 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+        {# {{ encore_entry_link_tags('app') }} #}
     </head>
     <body>
         <header>
@@ -14,8 +15,14 @@
                 </div>
                 <ul>
                     <li><a href="{{ path("accueil") }}">Accueil</a></li>
+                    {% if is_granted('ROLE_USER')%}
                     <li><a href="{{ path("ajout_pizza") }}">Crée ta pizza</a></li>
-                    {# <li><a href="{{ path("contact") }}">Contact</a></li> #}
+                    {% endif %}
+                    <li><a href="{{ path("app_login") }}">Se connecter</a></li>
+                     {% if is_granted('ROLE_USER')%}
+                    <li><a href="{{ path("app_logout") }}">Se déconnecter</a></li>
+                     {% endif %}
+                    <li><a href="{{ path("inscription") }}">S'inscrire</a></li>
                 </ul>
             </nav>
         </header>
@@ -28,12 +35,12 @@
                 <div class="footer-content">
                     <p>contact@pizza-luigi.fr</p>
                     <p>01 23 45 67 89</p>
-                    {# <a href="{{ path("contact") }}">Formulaire de contact</a> #}
                     <div class="copy">
                         <p>c 2023 Pizza Luigi. Tous droits réservés.</p>
                     </div>
                 </div>
             </section>
         </footer>
+        {# {{ encore_entry_script_tags('app') }} #}
     </body>
 </html>

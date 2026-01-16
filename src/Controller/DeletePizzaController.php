@@ -17,7 +17,7 @@ final class DeletePizzaController extends AbstractController
         if($this->isCsrfTokenValid("SUP". $pizza->getId(),$request->get('_token'))){
             $entityManager->remove($pizza);
             $entityManager->flush();
-            $this->addFlash("success","La suppression a été effectuée");
+            $this->addFlash("success","La suppression a été effectuée !");
             return $this->redirectToRoute("accueil");
             
         }

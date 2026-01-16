@@ -20,7 +20,7 @@ final class UpdatePizzaController extends AbstractController
         if ($pizzaform->isSubmitted() && $pizzaform->isValid()){
             $entityManager->persist($pizza);
             $entityManager->flush();
-            $this->addFlash('success','Pizza ajoutée avec succès !');
+            $this->addFlash('success','Pizza modifiée avec succès !');
             return $this->redirectToRoute('accueil');
         }
 

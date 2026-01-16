@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
-// use Assert\NotBlank;
-// use Symfony\Component\Validator\Constraints as Assert;
+use Assert\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Pates;
 use App\Entity\Pizza;
 use App\Entity\IngredientClassique;
@@ -22,10 +22,10 @@ class AddPizzaType extends AbstractType
         $builder
             ->add('nom', TextType::class,[
                 'label'=> 'Le nom de ta pizza : ',
-                // 'contraints'=>[
-                //     new Assert\NotBlank([
-                //         'message'=>'Le champ nom ne peux pas être vide',]),
-                //     ],
+                'constraints'=>[
+                    new Assert\NotBlank([
+                        'message'=>'Le champ nom ne peux pas être vide',]),
+                    ],
             ])
             ->add('ingredient_special', TextType::class,[
                 'label'=> 'Ton ingrédient spécial : ',
@@ -38,6 +38,7 @@ class AddPizzaType extends AbstractType
                 'class' => IngredientClassique::class,
                 'choice_label' => 'nom',
                 'multiple' => true,
+                'expanded' => true,
             ])
         ;
     }
