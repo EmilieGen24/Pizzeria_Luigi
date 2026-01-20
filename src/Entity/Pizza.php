@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use App\Entity\Pates;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\IngredientClassique;
 use App\Repository\PizzaRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: PizzaRepository::class)]
 class Pizza
 {
@@ -119,4 +123,39 @@ class Pizza
 
         return $this;
     }
+    
+    #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageName = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if($imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }    
+
 }
+
