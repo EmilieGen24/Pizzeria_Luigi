@@ -14,8 +14,10 @@ final class HomeController extends AbstractController
     public function index(PizzaRepository $repository): Response
     {
         $pizzas = $repository->findAll();
+        
         return $this->render('home/accueil.html.twig', [
             'pizzeria' => $pizzas,
+
         ]);
     }
 }

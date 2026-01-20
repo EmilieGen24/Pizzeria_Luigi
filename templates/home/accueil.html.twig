@@ -12,6 +12,8 @@
 
     {% for pizza in pizzeria %}
         <h1>{{pizza.nom}}</h1>
+        {# {{ dump(pizza.imageName)}} #}
+        <img src="{{asset('uploads/images/' ~ pizza.imageName)}}" alt="Image de la pizza">
         {# <p>{{pizza.ingredientSpecial}}</p> #}
         {% if is_granted('ROLE_USER')%}
         <a href={{ path("update_pizza", {'id' : pizza.id})}}>Modifier</a>
